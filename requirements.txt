@@ -22,3 +22,4 @@ youtube_dl
 # Other
 requests
 python-dotenv
+matplotlib
