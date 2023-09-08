@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Welcome, {{ session['email'] }}!</h1>
+        <p>You are now signed in.</p>
+
+        <!-- Add links or buttons for your app's functionalities here -->
+        <!-- For example, a button to start a new transcription job -->
+        <button class="btn btn-primary" onclick="location.href='{{ url_for('start_transcription') }}';">Start Transcription</button>
+
+        <!-- Sign out button -->
+        <button class="btn btn-secondary mt-3" onclick="location.href='{{ url_for('sign_out') }}';">Sign Out</button>
+    </div>
+</body>
+</html>
