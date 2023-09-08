@@ -14,7 +14,7 @@ openai_transcription = OpenAITranscription()
 @app.route("/")
 def home():
     if 'email' not in session:
-        return redirect(url_for("google_auth"))
+        return redirect(url_for("google_auth_route"))
     else:
         return redirect(url_for("transcribe"))
 
@@ -25,6 +25,7 @@ def google_auth_route():
 @app.route("/google_auth/callback")
 def google_auth_callback_route():
     return google_auth_callback()
+
 
 @app.route("/transcribe")
 def transcribe():

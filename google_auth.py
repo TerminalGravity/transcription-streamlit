@@ -22,7 +22,7 @@ def google_auth():
         redirect_uri=GOOGLE_REDIRECT_URI,
         scope=["openid", "email", "profile"],
     )
-    return redirect(request_uri)
+    return redirect(url_for("google_auth_route"))
 
 def google_auth_callback():
     code = request.args.get("code")

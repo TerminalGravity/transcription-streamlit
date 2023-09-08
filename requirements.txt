@@ -23,3 +23,5 @@ youtube_dl
 requests
 python-dotenv
 matplotlib
+flask_login
+oauthlib
