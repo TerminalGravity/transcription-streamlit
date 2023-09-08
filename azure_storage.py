@@ -1,12 +1,21 @@
+import uuid
 from azure.storage.blob import BlobServiceClient
 from config import AZURE_STORAGE_CONNECTION_STRING, AZURE_STORAGE_CONTAINER_NAME
+from azure.identity import DefaultAzureCredential
+
+class AzureStorage:
+    def __init__(self):
+        credential = DefaultAzureCredential()
+        self.blob_service_client = BlobServiceClient(account_url="https://testblobeastusjack.blob.core.windows.net", credential=credential)
+        self.container_client = self.blob_service_client.get_container_client(AZURE_STORAGE_CONTAINER_NAME)
 
 class AzureStorage:
     def __init__(self):
         self.blob_service_client = BlobServiceClient.from_connection_string(AZURE_STORAGE_CONNECTION_STRING)
         self.container_client = self.blob_service_client.get_container_client(AZURE_STORAGE_CONTAINER_NAME)
 
-    def upload_file(self, file_path, blob_name):
+    def upload_file(self, file_path):
+        blob_name = str(uuid.uuid4())
         with open(file_path, "rb") as data:
             self.container_client.upload_blob(name=blob_name, data=data)
 

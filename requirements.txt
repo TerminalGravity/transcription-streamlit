@@ -1,23 +1,24 @@
 # Web Framework
-streamlit==0.79.0
+streamlit
 
 # OpenAI
-openai==0.10.2
+openai
 
 # Azure
-azure-storage-blob==12.8.0
+azure-storage-blob
+azure-identity
 
 # Google Auth
-google-auth==1.27.1
-google-auth-oauthlib==0.4.3
-google-auth-httplib2==0.0.4
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
 
 # Audio Processing
-pydub==0.24.1
+pydub
 
 # Video Processing
-youtube_dl==2021.3.14
+youtube_dl
 
 # Other
-requests==2.25.1
-python-dotenv==0.15.0
+requests
+python-dotenv
