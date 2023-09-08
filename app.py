@@ -3,6 +3,7 @@ from azure_storage import AzureStorage
 from openai_transcription import OpenAITranscription
 from google_auth import google_auth, google_auth_callback
 from flask import Flask, redirect, url_for, session
+from flask import render_template
 from config import APP_SECRET_KEY
 
 app = Flask(__name__)
@@ -16,7 +17,7 @@ def home():
     if 'email' not in session:
         return redirect(url_for("google_auth_route"))
     else:
-        return redirect(url_for("transcribe"))
+        return render_template('index.html')
 
 @app.route("/google_auth")
 def google_auth_route():
