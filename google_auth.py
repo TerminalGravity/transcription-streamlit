@@ -22,7 +22,7 @@ def google_auth():
         redirect_uri=GOOGLE_REDIRECT_URI,
         scope=["openid", "email", "profile"],
     )
-    return redirect(url_for("google_auth_route"))
+    return redirect(request_uri)
 
 def google_auth_callback():
     code = request.args.get("code")
@@ -50,8 +50,10 @@ def google_auth_callback():
     userinfo_response = requests.get(uri, headers=headers, data=body)
 
     if userinfo_response.json().get("email_verified"):
-        unique_id = userinfo_response.json()["sub"]
         users_email = userinfo_response.json()["email"]
+        if not users_email.endswith("@alldigitalrewards.com"):
+            return "User not from @alldigitalrewards.com domain.", 400
+        unique_id = userinfo_response.json()["sub"]
         picture = userinfo_response.json()["picture"]
         users_name = userinfo_response.json()["given_name"]
     else:

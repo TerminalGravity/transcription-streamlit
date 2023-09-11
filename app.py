@@ -43,4 +43,4 @@ def transcribe():
             st.write("An error occurred: ", str(e))
 
 if __name__ == "__main__":
-    app.run(port=8501)
+    app.run(port=8501, ssl_context='adhoc')
