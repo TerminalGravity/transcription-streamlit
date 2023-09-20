@@ -1,21 +1,35 @@
 import streamlit as st
-from azure_storage import AzureStorage
-from openai_transcription import OpenAITranscription
 
-azure_storage = AzureStorage()
-openai_transcription = OpenAITranscription()
+import whisper
 
-def transcribe():
-    st.title("Audio Transcription App")
-    audio_link = st.text_input("Enter the link to your audio or video file")
-    if st.button("Transcribe"):
-        try:
-            transcription = openai_transcription.transcribe_audio_from_link(audio_link, azure_storage)
-            st.write(transcription)
-            with open("transcription.txt", "w") as f:
-                f.write(transcription)
-            st.markdown("Download Transcription [Here](transcription.txt)")
-        except Exception as e:
-            st.write("An error occurred: ", str(e))
+st.title("Whisper App")
 
-transcribe()
+#upload audio 
+audio_file = st.file_uploader("Upload Audio", type=["wav", "mp3", "m4a"])
+
+@st.cache
+def load_whisper_model():
+    model = whisper.load_model("base")
+    return model
+
+if st.sidebar.button("Load Whisper Model"):
+    model = load_whisper_model()
+    st.sidebar.success("Whisper Model Loaded")
+
+# streamlit function to get the file path 
+def get_audio_file_details(file):
+    file_details = {"FileName": file.name, "FileType": file.type, "FileSize": file.size}
+    return file_details
+
+if st.sidebar.button("Transcribe Audio"):
+    if audio_file is not None:
+        st.sidebar.message("Transcribing Audio")
+        transcription = model.transcribe(audio_file.name)
+        st.sidebar.success("Transcription Complete")
+        st.markdown(transcription["text"])
+    else:
+        st.sidebar.error("Please upload an audio file :)")
+
+st.sidebar.header("Play Original Audio File")
+st.sidebar.audio(audio_file)
+

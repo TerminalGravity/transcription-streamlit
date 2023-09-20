@@ -1,27 +1,7 @@
 # Web Framework
 streamlit
-
+click==8
 # OpenAI
-openai
 
-# Azure
-azure-storage-blob
-azure-identity
 
-# Google Auth
-google-auth
-google-auth-oauthlib
-google-auth-httplib2
-
-# Audio Processing
-pydub
-
-# Video Processing
-youtube_dl
-
-# Other
-requests
-python-dotenv
-matplotlib
-flask_login
-oauthlib
+torch

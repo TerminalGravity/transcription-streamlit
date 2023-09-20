@@ -1,38 +1,27 @@
 # Audio Transcription App
 
-This is a simple, single page app that transcribes an audio file using the Whisper ASR model from OpenAI. The app is scripted in Python and hosted on Streamlit. It uses Azure for temporary data storage, Google OAuth for ADR, and allows users to paste a link to a video or audio file. The app will then transcribe the audio, showing the completion progress and relevant file details. The output is a .TXT file of the transcription, which can be downloaded via a link.
 
 ## Installation
 
 To install the required dependencies, run the following command:
 
+brew install ffmpeg
+
 ```bash
 pip install -r requirements.txt
+
 ```
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+
+pip install git+https://github.com/openai/whisper.git -q
+or
+pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
 
 ## Configuration
 
-Before running the app, you need to set up the following environment variables in a `.env` file:
+export OPENAI_API_KEY="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"
 
-- `AZURE_STORAGE_CONNECTION_STRING`: Your Azure Storage connection string
-- `AZURE_STORAGE_CONTAINER_NAME`: Your Azure Storage container name
-- `OPENAI_API_KEY`: Your OpenAI API key
-- `GOOGLE_CLIENT_ID`: Your Google OAuth client ID
-- `GOOGLE_CLIENT_SECRET`: Your Google OAuth client secret
-- `GOOGLE_REDIRECT_URI`: Your Google OAuth redirect URI
-- `APP_SECRET_KEY`: Your app secret key
 
-You can set these variables by creating a `.env` file in the root directory of the project and adding the variables like this:
-
-```bash
-AZURE_STORAGE_CONNECTION_STRING=your_azure_storage_connection_string
-AZURE_STORAGE_CONTAINER_NAME=your_azure_storage_container_name
-OPENAI_API_KEY=your_openai_api_key
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-GOOGLE_REDIRECT_URI=your_google_redirect_uri
-APP_SECRET_KEY=your_app_secret_key
-```
 
 ## Running the App
 
